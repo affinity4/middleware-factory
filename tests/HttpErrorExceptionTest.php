@@ -1,6 +1,5 @@
 <?php
-
-namespace Middlewares\Tests;
+namespace Affinity4\MiddlewareFactory\Tests;
 
 use Middlewares\Utils\HttpErrorException;
 use PHPUnit\Framework\TestCase;

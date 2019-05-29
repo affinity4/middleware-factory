@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace Middlewares\Tests;
+namespace Affinity4\MiddlewareFactory\Tests;
 
 use Middlewares\Utils\CallableHandler;
 use Middlewares\Utils\Factory;

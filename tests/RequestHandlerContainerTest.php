@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace Middlewares\Tests;
+namespace Affinity4\MiddlewareFactory\Tests;
 
 use Middlewares\Tests\Assets\Controller;
 use Middlewares\Tests\Assets\ErrorController;

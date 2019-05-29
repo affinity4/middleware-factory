@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace Middlewares\Tests;
+namespace Affinity4\MiddlewareFactory\Tests;
 
 use GuzzleHttp\Psr7\Stream;
 use Middlewares\Tests\Assets\MiddlewareWithTraits;

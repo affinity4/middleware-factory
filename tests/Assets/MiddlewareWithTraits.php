@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace Middlewares\Tests\Assets;
+namespace Affinity4\MiddlewareFactory\Tests\Assets;
 
 use Middlewares\Utils\Traits\HasResponseFactory;
 use Middlewares\Utils\Traits\HasStreamFactory;
