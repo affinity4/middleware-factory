@@ -3,13 +3,16 @@ declare(strict_types = 1);
 
 namespace Affinity4\MiddlewareFactory\Tests;
 
-use GuzzleHttp\Psr7\Stream;
-use Middlewares\Tests\Assets\MiddlewareWithTraits;
-use Middlewares\Utils\Dispatcher;
-use Middlewares\Utils\Factory\GuzzleFactory;
-use Middlewares\Utils\Factory\SlimFactory;
 use PHPUnit\Framework\TestCase;
-use Slim\Http\Response;
+
+use Affinity4\MiddlewareFactory\Tests\Assets\MiddlewareWithTraits;
+
+use Affinity4\MiddlewareFactory\Dispatcher;
+
+use Nyholm\Psr7\Factory\Psr17Factory;
+
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 
 class TraitsTest extends TestCase
 {
@@ -17,11 +20,11 @@ class TraitsTest extends TestCase
     {
         $response = Dispatcher::run([
             (new MiddlewareWithTraits())
-                ->streamFactory(new GuzzleFactory())
-                ->responseFactory(new SlimFactory()),
+                ->responseFactory(new Psr17Factory())
+                ->streamFactory(new Psr17Factory())
         ]);
 
-        $this->assertInstanceOf(Stream::class, $response->getBody());
-        $this->assertInstanceOf(Response::class, $response);
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+        $this->assertInstanceOf(StreamInterface::class, $response->getBody());
     }
 }

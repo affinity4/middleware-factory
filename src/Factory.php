@@ -1,11 +1,9 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
-namespace Middlewares\Utils;
+namespace Affinity4\MiddlewareFactory;
 
-use Middlewares\Utils\Factory\DiactorosFactory;
-use Middlewares\Utils\Factory\GuzzleFactory;
-use Middlewares\Utils\Factory\SlimFactory;
+use Nyholm\Psr7\Factory\Psr17Factory;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestFactoryInterface;
@@ -22,10 +20,7 @@ use RuntimeException;
 abstract class Factory
 {
     private static $strategies = [
-        DiactorosFactory::class,
-        GuzzleFactory::class,
-        SlimFactory::class,
-        'Nyholm\Psr7\Factory\Psr17Factory',
+        Psr17Factory::class
     ];
 
     private static $factory;

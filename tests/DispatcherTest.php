@@ -3,9 +3,9 @@ declare(strict_types = 1);
 
 namespace Affinity4\MiddlewareFactory\Tests;
 
-use Middlewares\Utils\CallableHandler;
-use Middlewares\Utils\Dispatcher;
-use Middlewares\Utils\Factory;
+use Affinity4\MiddlewareFactory\CallableHandler;
+use Affinity4\MiddlewareFactory\Dispatcher;
+use Affinity4\MiddlewareFactory\Factory;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\RequestHandlerInterface;

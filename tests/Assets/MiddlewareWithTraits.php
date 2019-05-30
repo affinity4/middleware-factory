@@ -3,8 +3,8 @@ declare(strict_types = 1);
 
 namespace Affinity4\MiddlewareFactory\Tests\Assets;
 
-use Middlewares\Utils\Traits\HasResponseFactory;
-use Middlewares\Utils\Traits\HasStreamFactory;
+use Affinity4\MiddlewareFactory\Traits\HasResponseFactory;
+use Affinity4\MiddlewareFactory\Traits\HasStreamFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;

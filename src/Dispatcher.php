@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace Middlewares\Utils;
+namespace Affinity4\MiddlewareFactory;
 
 use Closure;
 use Psr\Http\Message\ResponseInterface;

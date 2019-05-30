@@ -1,9 +1,9 @@
 <?php
 namespace Affinity4\MiddlewareFactory\Tests;
 
-use Middlewares\Utils\HttpErrorException;
 use PHPUnit\Framework\TestCase;
-use RuntimeException;
+use Affinity4\MiddlewareFactory\HttpErrorException;
+use \RuntimeException;
 
 class HttpErrorExceptionTest extends TestCase
 {

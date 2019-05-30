@@ -1,7 +1,7 @@
 {
     "name": "affinity4/middleware-factory",
     "type": "library",
-    "description": "Factory to dispatch PSR-15 middleware packages",
+    "description": "Use Psr17Factories to dispatch PSR-15 middleware packages. Default Psr17Factory is Nyholm\\Psr7\\Factory\\Psr17Factory",
     "license": "MIT",
     "keywords": [
         "psr-7",
@@ -20,7 +20,8 @@
         "psr/http-message": "^1.0",
         "psr/http-server-middleware": "^1.0",
         "psr/container": "^1.0",
-        "psr/http-factory": "^1.0"
+        "psr/http-factory": "^1.0",
+        "nyholm/psr7": "^1.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.1",

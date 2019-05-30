@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace Middlewares\Utils;
+namespace Affinity4\MiddlewareFactory;
 
 use Exception;
 use Psr\Container\ContainerExceptionInterface;
@@ -16,10 +16,13 @@ use ReflectionMethod;
  */
 class RequestHandlerContainer implements ContainerInterface
 {
+    /**
+     * @var array
+     */
     protected $arguments;
 
     /**
-     * @param array $arguments Arguments passed to the request handler constructor
+     * @param array $arguments
      */
     public function __construct(array $arguments = [])
     {
@@ -43,7 +46,7 @@ class RequestHandlerContainer implements ContainerInterface
     /**
      * {@inheritdoc}
      *
-     * @return RequestHandlerInterface
+     * @return \Psr\Http\Server\RequestHandlerInterface
      */
     public function get($id)
     {

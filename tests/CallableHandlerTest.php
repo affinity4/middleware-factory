@@ -1,11 +1,11 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Affinity4\MiddlewareFactory\Tests;
 
-use Middlewares\Utils\CallableHandler;
-use Middlewares\Utils\Factory;
 use PHPUnit\Framework\TestCase;
+use Affinity4\MiddlewareFactory\CallableHandler;
+use Affinity4\MiddlewareFactory\Factory;
 use Psr\Http\Message\ResponseInterface;
 
 class CallableHandlerTest extends TestCase

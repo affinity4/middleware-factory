@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace Middlewares\Utils\Traits;
+namespace Affinity4\MiddlewareFactory\Traits;
 
 use Middlewares\Utils\Factory;
 use Psr\Http\Message\StreamFactoryInterface;

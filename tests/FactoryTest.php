@@ -3,10 +3,8 @@ declare(strict_types = 1);
 
 namespace Affinity4\MiddlewareFactory\Tests;
 
-use Middlewares\Utils\Factory;
-use Middlewares\Utils\Factory\DiactorosFactory;
-use Middlewares\Utils\Factory\GuzzleFactory;
-use Middlewares\Utils\Factory\SlimFactory;
+use Affinity4\MiddlewareFactory\Factory;
+use Nyholm\Psr7\Factory\Psr17Factory;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -16,10 +14,6 @@ use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriFactoryInterface;
 use Psr\Http\Message\UriInterface;
-use Zend\Diactoros\Response;
-use Zend\Diactoros\ServerRequest;
-use Zend\Diactoros\Stream;
-use Zend\Diactoros\Uri;
 
 class FactoryTest extends TestCase
 {
@@ -29,10 +23,9 @@ class FactoryTest extends TestCase
         $responseFactory = Factory::getResponseFactory();
 
         $this->assertInstanceOf(ResponseFactoryInterface::class, $responseFactory);
-        $this->assertInstanceOf(DiactorosFactory::class, $responseFactory);
+        $this->assertInstanceOf(Psr17Factory::class, $responseFactory);
 
         $this->assertInstanceOf(ResponseInterface::class, $response);
-        $this->assertInstanceOf(Response::class, $response);
 
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertTrue($response->getBody()->isWritable());
@@ -45,10 +38,9 @@ class FactoryTest extends TestCase
         $streamFactory = Factory::getStreamFactory();
 
         $this->assertInstanceOf(StreamFactoryInterface::class, $streamFactory);
-        $this->assertInstanceOf(DiactorosFactory::class, $streamFactory);
+        $this->assertInstanceOf(Psr17Factory::class, $streamFactory);
 
         $this->assertInstanceOf(StreamInterface::class, $stream);
-        $this->assertInstanceOf(Stream::class, $stream);
 
         $this->assertTrue($stream->isWritable());
         $this->assertTrue($stream->isSeekable());
@@ -63,7 +55,6 @@ class FactoryTest extends TestCase
         $stream = Factory::getStreamFactory()->createStreamFromResource($resource);
 
         $this->assertInstanceOf(StreamInterface::class, $stream);
-        $this->assertInstanceOf(Stream::class, $stream);
 
         $this->assertTrue($stream->isWritable());
         $this->assertTrue($stream->isSeekable());
@@ -76,10 +67,9 @@ class FactoryTest extends TestCase
         $uriFactory = Factory::getUriFactory();
 
         $this->assertInstanceOf(UriFactoryInterface::class, $uriFactory);
-        $this->assertInstanceOf(DiactorosFactory::class, $uriFactory);
+        $this->assertInstanceOf(Psr17Factory::class, $uriFactory);
 
         $this->assertInstanceOf(UriInterface::class, $uri);
-        $this->assertInstanceOf(Uri::class, $uri);
 
         $this->assertEquals('/my-path', $uri->getPath());
     }
@@ -90,10 +80,9 @@ class FactoryTest extends TestCase
         $serverRequestFactory = Factory::getServerRequestFactory();
 
         $this->assertInstanceOf(ServerRequestFactoryInterface::class, $serverRequestFactory);
-        $this->assertInstanceOf(DiactorosFactory::class, $serverRequestFactory);
+        $this->assertInstanceOf(Psr17Factory::class, $serverRequestFactory);
 
         $this->assertInstanceOf(ServerRequestInterface::class, $serverRequest);
-        $this->assertInstanceOf(ServerRequest::class, $serverRequest);
 
         $this->assertEquals('/', $serverRequest->getUri()->getPath());
         $this->assertEquals('GET', $serverRequest->getMethod());
@@ -106,51 +95,27 @@ class FactoryTest extends TestCase
         return [
             [
                 [
-                    DiactorosFactory::class,
-                    GuzzleFactory::class,
-                    SlimFactory::class,
+                    Psr17Factory::class
                 ],
-                DiactorosFactory::class,
-                DiactorosFactory::class,
-                DiactorosFactory::class,
-                DiactorosFactory::class,
-            ],
-            [
-                [
-                    GuzzleFactory::class,
-                    DiactorosFactory::class,
-                    SlimFactory::class,
-                ],
-                GuzzleFactory::class,
-                GuzzleFactory::class,
-                GuzzleFactory::class,
-                GuzzleFactory::class,
-            ],
-            [
-                [
-                    SlimFactory::class,
-                    GuzzleFactory::class,
-                    DiactorosFactory::class,
-                ],
-                SlimFactory::class,
-                SlimFactory::class,
-                SlimFactory::class,
-                SlimFactory::class,
+                Psr17Factory::class,
+                Psr17Factory::class,
+                Psr17Factory::class,
+                Psr17Factory::class,
             ],
             [
                 [
                     'NotFound',
                     [
-                        'serverRequest' => SlimFactory::class,
-                        'response' => DiactorosFactory::class,
-                        'stream' => SlimFactory::class,
-                        'uri' => GuzzleFactory::class,
+                        'serverRequest' => Psr17Factory::class,
+                        'response' => Psr17Factory::class,
+                        'stream' => Psr17Factory::class,
+                        'uri' => Psr17Factory::class,
                     ],
                 ],
-                SlimFactory::class,
-                DiactorosFactory::class,
-                SlimFactory::class,
-                GuzzleFactory::class,
+                Psr17Factory::class,
+                Psr17Factory::class,
+                Psr17Factory::class,
+                Psr17Factory::class
             ],
         ];
     }

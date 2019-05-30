@@ -1,13 +1,9 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
-namespace Middlewares\Utils;
+namespace Affinity4\MiddlewareFactory;
 
-use Exception;
-use RuntimeException;
-use Throwable;
-
-class HttpErrorException extends Exception
+class HttpErrorException extends \Exception
 {
     private static $phrases = [
         // CLIENT ERROR
@@ -64,14 +60,14 @@ class HttpErrorException extends Exception
      *
      * @param int            $code     A valid http error code
      * @param array          $context
-     * @param Throwable|null $previous
+     * @param \Throwable|null $previous
      *
      * @return static
      */
     public static function create(int $code = 500, array $context = [], Throwable $previous = null): self
     {
         if (!isset(self::$phrases[$code])) {
-            throw new RuntimeException("Http error not valid ({$code})");
+            throw new \RuntimeException("Http error not valid ({$code})");
         }
 
         $exception = new static(self::$phrases[$code], $code, $previous);

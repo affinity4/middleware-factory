@@ -1,18 +1,18 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Affinity4\MiddlewareFactory\Tests;
 
-use Middlewares\Tests\Assets\Controller;
-use Middlewares\Tests\Assets\ErrorController;
-use Middlewares\Tests\Assets\RequestHandlerController;
-use Middlewares\Utils\RequestHandlerContainer;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use Affinity4\MiddlewareFactory\Tests\Assets\Controller;
+use Affinity4\MiddlewareFactory\Tests\Assets\ErrorController;
+use Affinity4\MiddlewareFactory\Tests\Assets\RequestHandlerController;
+use Affinity4\MiddlewareFactory\RequestHandlerContainer;
 
-final class ReflectionResolverTest extends TestCase
+final class RequestHandlerContainerTest extends TestCase
 {
     public function testResolveClass()
     {
