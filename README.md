@@ -1,50 +1,46 @@
-# middlewares/utils
+# Affinity4: Middleware Factory
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Software License][ico-license]](LICENSE)
-[![Build Status][ico-travis]][link-travis]
-[![Quality Score][ico-scrutinizer]][link-scrutinizer]
-[![Total Downloads][ico-downloads]][link-downloads]
-[![SensioLabs Insight][ico-sensiolabs]][link-sensiolabs]
+A fork of [Middlewares\Utils](https://github.com/middlewares/utils) package after they removed support and tests for Nyholm\Psr7. 
 
-Common utilities used by the middlewares' packages:
+This fork also upgrades PHPUnit to 8.1+, requires PHP7.2+ and drops support for GuzzleHttp, Slim/Http and Zend Diactoros. The versions of these Http libraries in Middlewares\Utils were quite old anyways, and many of those libraries will soon have their own Psr17 implementations anyways
+
+Nyholm\Psr7\Factory\Psr17Factory was chosen due to it's performance compared the other Psr7 implementations
 
 ## Factory
 
-Used to create psr-7 instances of `ServerRequestInterface`, `ResponseInterface`, `StreamInterface` and `UriInterface`. Detects automatically [Diactoros](https://github.com/zendframework/zend-diactoros), [Guzzle](https://github.com/guzzle/psr7), [Slim](https://github.com/slimphp/Slim) and [Nyholm/psr7](https://github.com/Nyholm/psr7) but you can register a different factory using the [psr/http-factory](https://github.com/php-fig/http-factory) interface.
+Used to create psr-7 instances of `ServerRequestInterface`, `ResponseInterface`, `StreamInterface` and `UriInterface`. Comes with support for [Nyholm/psr7](https://github.com/Nyholm/psr7) out of the box, but you can register any different factory using the [psr/http-factory](https://github.com/php-fig/http-factory) interface.
 
 ```php
-use Middlewares\Utils\Factory;
+use Affinity4\MiddlewareFactory\Factory;
 
 $request = Factory::createServerRequest('GET', '/');
 $response = Factory::createResponse(200);
 $stream = Factory::createStream('Hello world');
 $uri = Factory::createUri('http://example.com');
 
-// By default, detect diactoros, guzzle, slim and nyholm (in this order of priority),
+// By default MiddlewareFactory uses Nyholm\Psr7\Factory\Psr17Factory,
 // but you can change it and add other classes
-Factory::setStrategy([
-    'MyApp\Psr17Factory'
-    Middlewares\Utils\Factory\GuzzleFactory,
-    Middlewares\Utils\Factory\DiactorosFactory,
+use Acme\Psr17Factory as AcmePsr17Factory
+Factory::setStrategies([
+    AcmePsr17Factory::class
 ]);
 
-//And also register directly an initialized factory
+// And also register directly an initialized factory
 Factory::setResponseFactory(new FooResponseFactory());
 
 $fooResponse = Factory::createResponse();
 
-//Get the PSR-17 factory used
+// Get the PSR-17 factory used
 $uriFactory = Factory::getUriFactory();
 $uri = $uriFactory->createUri('http://hello-world.com');
 ```
 
 ## Dispatcher
 
-Minimalist PSR-15 compatible dispatcher. Used for testing purposes.
+Minimalist PSR-15 compatible dispatcher
 
 ```php
-use Middlewares\Utils\Dispatcher;
+use Affinity4\MiddlewareFactory\Dispatcher;
 
 $response = Dispatcher::run([
     new Middleware1(),
@@ -62,7 +58,7 @@ $response = Dispatcher::run([
 To resolve and execute a callable. It can be used as a middleware, server request handler or a callable:
 
 ```php
-use Middlewares\Utils\CallableHandler;
+use Affinity4\MiddlewareFactory\CallableHandler;
 
 $callable = new CallableHandler(function () {
     return 'Hello world';
@@ -75,10 +71,10 @@ echo $response->getBody(); //Hello world
 
 ## HttpErrorException
 
-General purpose exception used to represent HTTP errors.
+General purpose exception used to represent HTTP errors
 
 ```php
-use Middlewares\Utils\HttpErrorException;
+use Affinity4\MiddlewareFactory\HttpErrorException;
 
 $exception = HttpErrorException::create(500, [
     'problem' => 'Something bad happened',
@@ -90,26 +86,21 @@ $context = $exception->getContext();
 
 ## Traits
 
-Common utilities shared between many middlewares like the ability to customize PSR-17 factories.
+Common utilities shared between many middlewares like the ability to customize PSR-17 factories
 
 * `HasResponseFactory`
 * `HasStreamFactory`
 
 ---
 
-Please see [CHANGELOG](CHANGELOG.md) for more information about recent changes and [CONTRIBUTING](CONTRIBUTING.md) for contributing details.
+## What Next
 
-The MIT License (MIT). Please see [LICENSE](LICENSE) for more information.
+* Code style cleanup
+* More tests to improve code coverage using @covers annotation to reduce false positives and ensure isolation of tests
 
-[ico-version]: https://img.shields.io/packagist/v/middlewares/utils.svg?style=flat-square
-[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/middlewares/utils/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/g/middlewares/utils.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/middlewares/utils.svg?style=flat-square
-[ico-sensiolabs]: https://img.shields.io/sensiolabs/i/3dcb2b7c-8564-48ef-9af4-d1e974762c3a.svg?style=flat-square
+Please see [CHANGELOG](CHANGELOG.md) for more information about recent changes and [CONTRIBUTING](CONTRIBUTING.md) for contributing details
 
-[link-packagist]: https://packagist.org/packages/middlewares/utils
-[link-travis]: https://travis-ci.org/middlewares/utils
-[link-scrutinizer]: https://scrutinizer-ci.com/g/middlewares/utils
-[link-downloads]: https://packagist.org/packages/middlewares/utils
-[link-sensiolabs]: https://insight.sensiolabs.com/projects/3dcb2b7c-8564-48ef-9af4-d1e974762c3a
+The MIT License (MIT). Please see [LICENSE](LICENSE) for more information
+
+[link-packagist]: https://packagist.org/packages/affinity4/middleware-factory
+[link-downloads]: https://packagist.org/packages/affinity4/middleware-factory

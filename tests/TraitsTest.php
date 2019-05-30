@@ -14,6 +14,10 @@ use Nyholm\Psr7\Factory\Psr17Factory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
+/**
+ * @covers \Affinity4\MiddlewareFactory\Traits\HasResponseFactory
+ * @covers \Affinity4\MiddlewareFactory\Traits\HasStreamFactory
+ */
 class TraitsTest extends TestCase
 {
     public function testCreation()

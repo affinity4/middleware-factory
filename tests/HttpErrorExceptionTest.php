@@ -5,6 +5,9 @@ use PHPUnit\Framework\TestCase;
 use Affinity4\MiddlewareFactory\HttpErrorException;
 use \RuntimeException;
 
+/**
+ * @covers \Affinity4\MiddlewareFactory\HttpErrorException
+ */
 class HttpErrorExceptionTest extends TestCase
 {
     public function testContext()

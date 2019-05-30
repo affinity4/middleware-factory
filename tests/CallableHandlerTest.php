@@ -8,6 +8,9 @@ use Affinity4\MiddlewareFactory\CallableHandler;
 use Affinity4\MiddlewareFactory\Factory;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * @covers \Affinity4\MiddlewareFactory\CallableHandler
+ */
 class CallableHandlerTest extends TestCase
 {
     public function testExecute()

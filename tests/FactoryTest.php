@@ -15,6 +15,9 @@ use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriFactoryInterface;
 use Psr\Http\Message\UriInterface;
 
+/**
+ * @covers \Affinity4\MiddlewareFactory\Factory
+ */
 class FactoryTest extends TestCase
 {
     public function testResponse()

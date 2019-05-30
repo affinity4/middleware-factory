@@ -12,6 +12,9 @@ use Affinity4\MiddlewareFactory\Tests\Assets\ErrorController;
 use Affinity4\MiddlewareFactory\Tests\Assets\RequestHandlerController;
 use Affinity4\MiddlewareFactory\RequestHandlerContainer;
 
+/**
+ * @covers \Affinity4\MiddlewareFactory\RequestHandlerContainer
+ */
 final class RequestHandlerContainerTest extends TestCase
 {
     public function testResolveClass()

@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.0.0] - 2019-05-30
+### Removed
+- `Middlewares\Utils\Factory\DiactorosFactory`
+- `Middlewares\Utils\Factory\SlimFactory`
+- `Middlewares\Utils\Factory\GuzzleFactory`
+- Support for PHP < 7.2
+
+### Updated
+- PHPUnit from 5/6 to 8.1+
+
+### Added
+- Nyholm\Psr7\Factory\Psr17Factory as primary Psr17Factory implementation
+
 ## [2.2.0] - 2019-03-05
 ### Added
 - `Middlewares\Utils\Dispatcher` implements `RequestHandlerInterface` [#16], [#17]

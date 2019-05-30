@@ -10,6 +10,9 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+/**
+ * @covers \Affinity4\MiddlewareFactory\Dispatcher
+ */
 class DispatcherTest extends TestCase
 {
     public function testDispatcherIsInstanceOfRequestHandlerInterface()
